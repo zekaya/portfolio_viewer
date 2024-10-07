@@ -1,0 +1,8 @@
+pandas
+yfinance
+tefas-crawler
+numpy
+matplotlib
+seaborn
+tabulate
+openpyxl
