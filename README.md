@@ -31,4 +31,5 @@ This tool fetches financial data, calculates portfolio values, and generates vis
 To run this project, make sure you have the following Python packages installed:
 
 ```bash
-pip install pandas yfinance matplotlib seaborn tabulate numpy tefas
+pip install -r requirements.txt
+
