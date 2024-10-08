@@ -120,7 +120,7 @@ for asset in df_grouped['asset']:
         data = tefas.fetch(start=last_bz_day_tr, end=last_bz_day_tr, name=asset, columns=["code", "date", "price"])
         df_grouped.loc[df_grouped['asset'] == asset, 'current_price'] = float(data['price']) / usdtry;
         df_grouped.loc[df_grouped['asset'] == asset, 'market_value'] = float(data['price'] / usdtry) * df_grouped.loc[df_grouped['asset'] == asset, 'adjusted_lots'];
-    elif type_name.iloc[0] == 'Stock - Consumer Discretionary':
+    elif type_name.iloc[0] == 'Stock - US Consumer Discretionary':
         us_stock_ticker = yf.Ticker(asset)
         hist = us_stock_ticker.history()
         stock_price = hist['Close'].iloc[-1]
@@ -168,7 +168,7 @@ for category, dataframe in dataframes.items():
     asset_transactions[category] = dataframe.groupby('Asset:').apply(lambda x: list(zip(x['Transaction Date:'], x['Unit Cost (USD):'], x['Qty:']))).to_dict()
     #print(asset_transactions[category])
 
-stock_tickers = list(asset_transactions['Stock - US Tech'].keys()) + list(asset_transactions['Fund - US Tech'].keys()) + list(asset_transactions['Stock - Consumer Discretionary'].keys())
+stock_tickers = list(asset_transactions['Stock - US Tech'].keys()) + list(asset_transactions['Fund - US Tech'].keys()) + list(asset_transactions['Stock - US Consumer Discretionary'].keys())
 tefas_inv_tickers = list(asset_transactions['Fund - TR Stocks'].keys()) + list(asset_transactions['Fund - TR Foreign'].keys())
 tefas_ret_tickers = list(asset_transactions['Fund - TR Retirement'].keys())
 cash_tickers = list(asset_transactions['Cash'].keys())
@@ -198,7 +198,7 @@ combined_asset_transactions.update(asset_transactions['Fund - TR Foreign'])
 combined_asset_transactions.update(asset_transactions['Fund - TR Stocks'])
 combined_asset_transactions.update(asset_transactions['Fund - US Tech'])
 combined_asset_transactions.update(asset_transactions['Stock - US Tech'])
-combined_asset_transactions.update(asset_transactions['Stock - Consumer Discretionary'])
+combined_asset_transactions.update(asset_transactions['Stock - US Consumer Discretionary'])
 combined_asset_transactions.update(asset_transactions['Cash'])
 
 # Calculate portfolio value
